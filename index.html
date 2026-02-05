@@ -9,7 +9,6 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
         body { font-family: 'Space Grotesk', sans-serif; background-color: #050505; color: white; overflow-x: hidden; cursor: crosshair; }
-        
         .electric-glow { box-shadow: 0 0 25px rgba(59, 130, 246, 0.4); }
         .gradient-text { 
             background: linear-gradient(90deg, #3b82f6, #2dd4bf, #3b82f6); 
@@ -19,34 +18,19 @@
             animation: shine 3s linear infinite;
         }
         @keyframes shine { to { background-position: 200% center; } }
-
-        .spark {
-            position: absolute;
-            width: 2px; height: 15px;
-            background: #3b82f6;
-            z-index: 999;
-            pointer-events: none;
-            animation: spark-anim 0.4s ease-out forwards;
-        }
-        @keyframes spark-anim {
-            0% { transform: scaleY(0); opacity: 1; }
-            100% { transform: scaleY(1) translateY(20px); opacity: 0; }
-        }
+        .spark { position: absolute; width: 2px; height: 15px; background: #3b82f6; z-index: 999; pointer-events: none; animation: spark-anim 0.4s ease-out forwards; }
+        @keyframes spark-anim { 0% { transform: scaleY(0); opacity: 1; } 100% { transform: scaleY(1) translateY(20px); opacity: 0; } }
+        .lang-btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
     </style>
 </head>
 <body onclick="createSpark(event)">
 
     <nav class="max-w-5xl mx-auto flex justify-between items-center py-8 px-6">
         <div class="text-xl font-bold italic tracking-tighter uppercase">MIFTA<span class="text-blue-500">.DEV</span></div>
-        <div class="flex items-center gap-6">
-            <div id="greetings" class="hidden md:block text-[10px] font-bold uppercase tracking-widest text-blue-500 italic">Halo!</div>
-            <a href="https://www.instagram.com/ya_rositt?igsh=MXVrMHNhN3Z1M2x5aQ==" target="_blank" class="text-zinc-400 hover:text-pink-500 transition-all text-xl">
-                <i class="fab fa-instagram"></i>
-            </a>
-        </div>
+        <div id="greetings" class="text-[10px] font-bold uppercase tracking-widest text-blue-500 italic">Halo!</div>
     </nav>
 
-    <header class="max-w-5xl mx-auto py-16 px-6 border-b border-zinc-900 text-center md:text-left">
+    <header class="max-w-5xl mx-auto py-16 px-6 text-center md:text-left">
         <div class="flex flex-col md:flex-row items-center gap-10">
             <div class="relative group p-1 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-[2.6rem]">
                 <img src="IMG-20260123-WA0008.jpg" alt="Miftakhurrosit" class="w-44 h-44 rounded-[2.5rem] object-cover grayscale group-hover:grayscale-0 transition-all duration-500 bg-black shadow-2xl">
@@ -56,98 +40,90 @@
                     CODE WITH <span class="gradient-text">POWER.</span>
                 </h1>
                 <p class="text-zinc-500 text-lg max-w-lg leading-relaxed">
-                    Halo, saya <span class="text-white font-medium">Miftakhurrosit</span>. Web developer yang fokus membangun website modern dan solusi digital yang bertenaga.
+                    Elevating digital experiences through <span class="text-white">Clean Code</span> and <span class="text-blue-500">Electric Design</span>.
                 </p>
             </div>
         </div>
     </header>
 
+    <section class="max-w-5xl mx-auto py-10 px-6 border-y border-zinc-900">
+        <div class="flex gap-4 mb-6 justify-center md:justify-start">
+            <button onclick="setLang('id')" id="btn-id" class="lang-btn active px-4 py-1 border border-zinc-800 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all">Indonesia</button>
+            <button onclick="setLang('en')" id="btn-en" class="lang-btn px-4 py-1 border border-zinc-800 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all">English</button>
+            <button onclick="setLang('jw')" id="btn-jw" class="lang-btn px-4 py-1 border border-zinc-800 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all">Jowo</button>
+        </div>
+        <div class="min-h-[100px]">
+            <p id="about-text" class="text-zinc-400 text-xl md:text-2xl font-light leading-snug italic">
+                "Saya adalah seorang pengembang web yang memadukan logika koding dengan estetika desain untuk menciptakan solusi digital yang bertenaga."
+            </p>
+        </div>
+    </section>
+
     <section class="max-w-5xl mx-auto py-10 px-6">
-        <div class="flex flex-wrap justify-center md:justify-start gap-3 text-[9px] font-bold tracking-widest uppercase">
-            <span class="px-5 py-2 border border-zinc-800 rounded-full bg-zinc-900/30 text-white">HTML5</span>
-            <span class="px-5 py-2 border border-zinc-800 rounded-full bg-zinc-900/30 text-blue-400 italic">Tailwind</span>
-            <span class="px-5 py-2 border border-zinc-800 rounded-full bg-zinc-900/30 text-yellow-500 italic">Javascript</span>
-            <span class="px-5 py-2 border border-zinc-800 rounded-full bg-zinc-900/30 text-orange-600">Git</span>
+        <div class="flex flex-wrap justify-center md:justify-start gap-3 text-[9px] font-bold tracking-widest uppercase text-zinc-500">
+            <span class="px-5 py-2 border border-zinc-800 rounded-full">HTML5</span>
+            <span class="px-5 py-2 border border-zinc-800 rounded-full">Tailwind</span>
+            <span class="px-5 py-2 border border-zinc-800 rounded-full text-yellow-500">Javascript</span>
+            <span class="px-5 py-2 border border-zinc-800 rounded-full text-blue-400">Streamlit</span>
         </div>
     </section>
 
     <section class="max-w-5xl mx-auto py-20 px-6 border-t border-zinc-900">
-        <div class="flex items-center justify-between mb-12">
-            <div>
-                <h2 class="text-3xl font-bold tracking-tighter uppercase italic text-blue-500">Selected Projects</h2>
-                <p class="text-zinc-500 text-sm italic">Hasil karya web saya sebelumnya.</p>
-            </div>
-        </div>
-
+        <h2 class="text-3xl font-bold tracking-tighter uppercase italic text-blue-500 mb-12">Selected Projects</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="group relative bg-zinc-950 border border-zinc-800 rounded-[2.5rem] overflow-hidden hover:border-blue-500 transition-all duration-500 p-8">
-                <div class="flex justify-between items-start mb-6">
-                    <div class="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-900 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20">
-                        PG
-                    </div>
-                    <a href="https://ocitmas36-svg.github.io/privacy-guard-web/" target="_blank" class="text-zinc-500 hover:text-white transition-colors">
-                        <i class="fas fa-external-link-alt text-xl"></i>
-                    </a>
+            <div class="group relative bg-zinc-950 border border-zinc-800 rounded-[2.5rem] p-8 hover:border-blue-500 transition-all duration-500">
+                <div class="flex justify-between mb-6">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-900 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20">PG</div>
+                    <a href="https://ocitmas36-svg.github.io/privacy-guard-web/" target="_blank" class="text-zinc-500 hover:text-white"><i class="fas fa-external-link-alt text-xl"></i></a>
                 </div>
                 <h3 class="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors uppercase italic">Privacy Guard Web</h3>
-                <p class="text-zinc-500 text-xs leading-relaxed mb-6">Sistem perlindungan privasi berbasis web yang dirancang untuk meningkatkan keamanan data digital.</p>
-                <div class="flex gap-2 font-bold text-[8px] uppercase tracking-widest text-blue-400">#Security #WebGuard</div>
+                <p class="text-zinc-500 text-xs mb-6">Sistem perlindungan privasi berbasis web untuk keamanan data digital.</p>
+                <div class="text-[8px] font-bold text-blue-400 tracking-widest uppercase">#Security #WebGuard</div>
             </div>
-
-            <div class="group relative bg-zinc-950 border border-zinc-800 rounded-[2.5rem] overflow-hidden hover:border-emerald-500 transition-all duration-500 p-8">
-                <div class="flex justify-between items-start mb-6">
-                    <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-800 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-500/20">
-                        RP
-                    </div>
-                    <a href="https://rosit-pro-cmgpr9ncvpaxrmlmezlkne.streamlit.app/" target="_blank" class="text-zinc-500 hover:text-white transition-colors">
-                        <i class="fas fa-external-link-alt text-xl"></i>
-                    </a>
+            <div class="group relative bg-zinc-950 border border-zinc-800 rounded-[2.5rem] p-8 hover:border-emerald-500 transition-all duration-500">
+                <div class="flex justify-between mb-6">
+                    <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-800 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-500/20">RP</div>
+                    <a href="https://rosit-pro-cmgpr9ncvpaxrmlmezlkne.streamlit.app/" target="_blank" class="text-zinc-500 hover:text-white"><i class="fas fa-external-link-alt text-xl"></i></a>
                 </div>
                 <h3 class="text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors uppercase italic">Rosit Pro Streamlit</h3>
-                <p class="text-zinc-500 text-xs leading-relaxed mb-6">Aplikasi data interaktif menggunakan Streamlit untuk manajemen data yang efisien dan cepat.</p>
-                <div class="flex gap-2 font-bold text-[8px] uppercase tracking-widest text-emerald-400">#Python #DataApp</div>
+                <p class="text-zinc-500 text-xs mb-6">Aplikasi visualisasi data interaktif yang dibangun dengan Python Streamlit.</p>
+                <div class="text-[8px] font-bold text-emerald-400 tracking-widest uppercase">#Python #DataApp</div>
             </div>
         </div>
     </section>
 
     <section class="max-w-5xl mx-auto py-16 px-6">
-        <div class="bg-zinc-950 rounded-[3rem] border border-zinc-800/50 p-10 text-center relative overflow-hidden">
-            <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-600/10 blur-[80px]"></div>
-            <h2 class="text-3xl font-bold mb-10 relative z-10 uppercase tracking-tighter">Koneksi & <span class="text-blue-500 italic">Kerjasama</span></h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10 mb-10 font-bold">
-                <div class="p-6 bg-black rounded-3xl border border-zinc-900">
-                    <i class="fas fa-envelope text-blue-500 mb-3 text-xl"></i>
-                    <p class="text-[9px] text-zinc-600 uppercase mb-1">Email</p>
-                    <p class="text-[11px]">kangrosit123321@gmail.com</p>
-                </div>
-                <div class="p-6 bg-black rounded-3xl border border-zinc-900">
-                    <i class="fab fa-whatsapp text-emerald-500 mb-3 text-xl"></i>
-                    <p class="text-[9px] text-zinc-600 uppercase mb-1">WhatsApp</p>
-                    <p class="text-[11px]">0889 8094 2762</p>
-                </div>
-                <a href="https://www.instagram.com/ya_rositt?igsh=MXVrMHNhN3Z1M2x5aQ==" target="_blank" class="p-6 bg-black rounded-3xl border border-zinc-900 hover:border-pink-500 transition-all">
-                    <i class="fab fa-instagram text-pink-500 mb-3 text-xl"></i>
-                    <p class="text-[9px] text-zinc-600 uppercase mb-1">Instagram</p>
-                    <p class="text-[11px]">@ya_rositt</p>
-                </a>
+        <div class="bg-zinc-950 rounded-[3rem] border border-zinc-800 p-10 text-center relative overflow-hidden">
+            <h2 class="text-3xl font-bold mb-10 relative z-10 uppercase italic">Koneksi & <span class="text-blue-500">Kerjasama</span></h2>
+            <div class="flex flex-col md:flex-row justify-center gap-4 mb-10 relative z-10 font-bold">
+                <a href="https://wa.me/6288980942762" class="p-4 bg-black rounded-2xl border border-zinc-900 hover:border-emerald-500 transition-all text-[11px] flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://www.instagram.com/ya_rositt" class="p-4 bg-black rounded-2xl border border-zinc-900 hover:border-pink-500 transition-all text-[11px] flex items-center justify-center gap-2"><i class="fab fa-instagram"></i> Instagram</a>
             </div>
-
-            <a href="https://wa.me/6288980942762" class="electric-glow bg-blue-600 hover:bg-white hover:text-black text-white px-14 py-5 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 inline-block z-10 relative shadow-2xl">GASS PROJECT!</a>
+            <a href="mailto:kangrosit123321@gmail.com" class="electric-glow bg-blue-600 text-white px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-all">GASS PROJECT!</a>
         </div>
     </section>
 
-    <footer class="max-w-5xl mx-auto py-12 text-center text-[8px] text-zinc-800 uppercase tracking-[0.6em] font-bold">
-        © 2026 Miftakhurrosit — Mifta.dev
-    </footer>
+    <footer class="py-12 text-center text-[8px] text-zinc-800 uppercase tracking-[1em]">© 2026 Mifta.dev</footer>
 
     <script>
+        const texts = {
+            id: '"Saya adalah seorang pengembang web yang memadukan logika koding dengan estetika desain untuk menciptakan solusi digital yang bertenaga."',
+            en: '"A dedicated web developer bridging the gap between complex logic and clean design to deliver high-performance digital solutions."',
+            jw: '"Sapa aruh soko kulo, Mifta. Lare IT sing seneng otak-atik kodingan lan desain web. Kodingan teliti, desain mrantasi, supados migunani."'
+        };
+
+        function setLang(lang) {
+            document.getElementById('about-text').innerText = texts[lang];
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+        }
+
         const now = new Date().getHours();
         const greet = document.getElementById('greetings');
-        if (now >= 5 && now < 12) greet.innerText = "Selamat Pagi!";
+        if (now >= 5 && now < 12) greet.innerText = "Sugeng Enjang!";
         else if (now >= 12 && now < 15) greet.innerText = "Selamat Siang!";
         else if (now >= 15 && now < 18) greet.innerText = "Selamat Sore!";
-        else greet.innerText = "Selamat Malam!";
+        else greet.innerText = "Sugeng Ndalu!";
 
         function createSpark(e) {
             for(let i=0; i<6; i++) {
