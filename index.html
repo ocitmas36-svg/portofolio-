@@ -1,51 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mifta.dev | Web Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #050505; color: white; overflow-x: hidden; cursor: crosshair; }
+        
+        .electric-glow { box-shadow: 0 0 25px rgba(59, 130, 246, 0.4); }
+        .gradient-text { 
+            background: linear-gradient(90deg, #3b82f6, #2dd4bf, #3b82f6); 
+            background-size: 200% auto;
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+        @keyframes shine { to { background-position: 200% center; } }
+
+        .spark {
+            position: absolute;
+            width: 2px; height: 15px;
+            background: #3b82f6;
+            z-index: 999;
+            pointer-events: none;
+            animation: spark-anim 0.4s ease-out forwards;
+        }
+        @keyframes spark-anim {
+            0% { transform: scaleY(0); opacity: 1; }
+            100% { transform: scaleY(1) translateY(20px); opacity: 0; }
+        }
+    </style>
+</head>
+<body onclick="createSpark(event)">
+
+    <nav class="max-w-5xl mx-auto flex justify-between items-center py-8 px-6">
+        <div class="text-xl font-bold italic tracking-tighter uppercase">MIFTA<span class="text-blue-500">.DEV</span></div>
+        <div class="flex items-center gap-6">
+            <div id="greetings" class="hidden md:block text-[10px] font-bold uppercase tracking-widest text-blue-500 italic">Halo!</div>
+            <a href="https://www.instagram.com/ya_rositt?igsh=MXVrMHNhN3Z1M2x5aQ==" target="_blank" class="text-zinc-400 hover:text-pink-500 transition-all text-xl">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </nav>
+
+    <header class="max-w-5xl mx-auto py-16 px-6 border-b border-zinc-900 text-center md:text-left">
+        <div class="flex flex-col md:flex-row items-center gap-10">
+            <div class="relative group p-1 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-[2.6rem]">
+                <img src="IMG-20260123-WA0008.jpg" alt="Miftakhurrosit" class="w-44 h-44 rounded-[2.5rem] object-cover grayscale group-hover:grayscale-0 transition-all duration-500 bg-black shadow-2xl">
+            </div>
+            <div class="flex-1">
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-none mb-4 uppercase">
+                    CODE WITH <span class="gradient-text">POWER.</span>
+                </h1>
+                <p class="text-zinc-500 text-lg max-w-lg leading-relaxed">
+                    Halo, saya <span class="text-white font-medium">Miftakhurrosit</span>. Web developer yang fokus membangun website modern dan solusi digital yang bertenaga.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <section class="max-w-5xl mx-auto py-10 px-6">
+        <div class="flex flex-wrap justify-center md:justify-start gap-3 text-[9px] font-bold tracking-widest uppercase">
+            <span class="px-5 py-2 border border-zinc-800 rounded-full bg-zinc-900/30 text-white">HTML5</span>
+            <span class="px-5 py-2 border border-zinc-800 rounded-full bg-zinc-900/30 text-blue-400 italic">Tailwind</span>
+            <span class="px-5 py-2 border border-zinc-800 rounded-full bg-zinc-900/30 text-yellow-500 italic">Javascript</span>
+            <span class="px-5 py-2 border border-zinc-800 rounded-full bg-zinc-900/30 text-orange-600">Git</span>
+        </div>
+    </section>
+
     <section class="max-w-5xl mx-auto py-20 px-6 border-t border-zinc-900">
         <div class="flex items-center justify-between mb-12">
             <div>
                 <h2 class="text-3xl font-bold tracking-tighter uppercase italic text-blue-500">Selected Projects</h2>
-                <p class="text-zinc-500 text-sm">Karya web yang pernah saya bangun sebelumnya.</p>
+                <p class="text-zinc-500 text-sm italic">Hasil karya web saya sebelumnya.</p>
             </div>
-            <div class="h-[1px] flex-1 bg-zinc-900 ml-10 hidden md:block"></div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="group relative bg-zinc-950 border border-zinc-800 rounded-[2rem] overflow-hidden hover:border-blue-500/50 transition-all duration-500">
-                <div class="p-8">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-12 h-12 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-500 text-2xl">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <a href="https://ocitmas36-svg.github.io/privacy-guard-web/" target="_blank" class="text-zinc-500 hover:text-white transition-colors">
-                            <i class="fas fa-external-link-alt text-xl"></i>
-                        </a>
+            <div class="group relative bg-zinc-950 border border-zinc-800 rounded-[2.5rem] overflow-hidden hover:border-blue-500 transition-all duration-500 p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-900 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20">
+                        PG
                     </div>
-                    <h3 class="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors uppercase tracking-tight">Privacy Guard Web</h3>
-                    <p class="text-zinc-500 text-sm leading-relaxed mb-6">Sistem perlindungan privasi berbasis web yang dirancang untuk meningkatkan keamanan data pengguna secara digital.</p>
-                    <div class="flex gap-2">
-                        <span class="text-[9px] font-bold px-3 py-1 bg-zinc-900 rounded-md text-zinc-400 uppercase">Security</span>
-                        <span class="text-[9px] font-bold px-3 py-1 bg-zinc-900 rounded-md text-zinc-400 uppercase">Web Guard</span>
-                    </div>
+                    <a href="https://ocitmas36-svg.github.io/privacy-guard-web/" target="_blank" class="text-zinc-500 hover:text-white transition-colors">
+                        <i class="fas fa-external-link-alt text-xl"></i>
+                    </a>
                 </div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors uppercase italic">Privacy Guard Web</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">Sistem perlindungan privasi berbasis web yang dirancang untuk meningkatkan keamanan data digital.</p>
+                <div class="flex gap-2 font-bold text-[8px] uppercase tracking-widest text-blue-400">#Security #WebGuard</div>
             </div>
 
-            <div class="group relative bg-zinc-950 border border-zinc-800 rounded-[2rem] overflow-hidden hover:border-blue-500/50 transition-all duration-500">
-                <div class="p-8">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-12 h-12 bg-emerald-600/10 rounded-2xl flex items-center justify-center text-emerald-500 text-2xl">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <a href="https://rosit-pro-cmgpr9ncvpaxrmlmezlkne.streamlit.app/" target="_blank" class="text-zinc-500 hover:text-white transition-colors">
-                            <i class="fas fa-external-link-alt text-xl"></i>
-                        </a>
+            <div class="group relative bg-zinc-950 border border-zinc-800 rounded-[2.5rem] overflow-hidden hover:border-emerald-500 transition-all duration-500 p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-800 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-500/20">
+                        RP
                     </div>
-                    <h3 class="text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors uppercase tracking-tight">Rosit Pro Streamlit</h3>
-                    <p class="text-zinc-500 text-sm leading-relaxed mb-6">Aplikasi data interaktif yang dibangun menggunakan Streamlit untuk visualisasi dan manajemen data yang efisien.</p>
-                    <div class="flex gap-2">
-                        <span class="text-[9px] font-bold px-3 py-1 bg-zinc-900 rounded-md text-zinc-400 uppercase">Python</span>
-                        <span class="text-[9px] font-bold px-3 py-1 bg-zinc-900 rounded-md text-zinc-400 uppercase">Streamlit</span>
-                        <span class="text-[9px] font-bold px-3 py-1 bg-zinc-900 rounded-md text-zinc-400 uppercase">Data App</span>
-                    </div>
+                    <a href="https://rosit-pro-cmgpr9ncvpaxrmlmezlkne.streamlit.app/" target="_blank" class="text-zinc-500 hover:text-white transition-colors">
+                        <i class="fas fa-external-link-alt text-xl"></i>
+                    </a>
                 </div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors uppercase italic">Rosit Pro Streamlit</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">Aplikasi data interaktif menggunakan Streamlit untuk manajemen data yang efisien dan cepat.</p>
+                <div class="flex gap-2 font-bold text-[8px] uppercase tracking-widest text-emerald-400">#Python #DataApp</div>
             </div>
         </div>
     </section>
-    
+
+    <section class="max-w-5xl mx-auto py-16 px-6">
+        <div class="bg-zinc-950 rounded-[3rem] border border-zinc-800/50 p-10 text-center relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-600/10 blur-[80px]"></div>
+            <h2 class="text-3xl font-bold mb-10 relative z-10 uppercase tracking-tighter">Koneksi & <span class="text-blue-500 italic">Kerjasama</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10 mb-10 font-bold">
+                <div class="p-6 bg-black rounded-3xl border border-zinc-900">
+                    <i class="fas fa-envelope text-blue-500 mb-3 text-xl"></i>
+                    <p class="text-[9px] text-zinc-600 uppercase mb-1">Email</p>
+                    <p class="text-[11px]">kangrosit123321@gmail.com</p>
+                </div>
+                <div class="p-6 bg-black rounded-3xl border border-zinc-900">
+                    <i class="fab fa-whatsapp text-emerald-500 mb-3 text-xl"></i>
+                    <p class="text-[9px] text-zinc-600 uppercase mb-1">WhatsApp</p>
+                    <p class="text-[11px]">0889 8094 2762</p>
+                </div>
+                <a href="https://www.instagram.com/ya_rositt?igsh=MXVrMHNhN3Z1M2x5aQ==" target="_blank" class="p-6 bg-black rounded-3xl border border-zinc-900 hover:border-pink-500 transition-all">
+                    <i class="fab fa-instagram text-pink-500 mb-3 text-xl"></i>
+                    <p class="text-[9px] text-zinc-600 uppercase mb-1">Instagram</p>
+                    <p class="text-[11px]">@ya_rositt</p>
+                </a>
+            </div>
+
+            <a href="https://wa.me/6288980942762" class="electric-glow bg-blue-600 hover:bg-white hover:text-black text-white px-14 py-5 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 inline-block z-10 relative shadow-2xl">GASS PROJECT!</a>
+        </div>
+    </section>
+
+    <footer class="max-w-5xl mx-auto py-12 text-center text-[8px] text-zinc-800 uppercase tracking-[0.6em] font-bold">
+        © 2026 Miftakhurrosit — Mifta.dev
+    </footer>
+
+    <script>
+        const now = new Date().getHours();
+        const greet = document.getElementById('greetings');
+        if (now >= 5 && now < 12) greet.innerText = "Selamat Pagi!";
+        else if (now >= 12 && now < 15) greet.innerText = "Selamat Siang!";
+        else if (now >= 15 && now < 18) greet.innerText = "Selamat Sore!";
+        else greet.innerText = "Selamat Malam!";
+
+        function createSpark(e) {
+            for(let i=0; i<6; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'spark';
+                spark.style.left = e.pageX + 'px';
+                spark.style.top = e.pageY + 'px';
+                spark.style.transform = `rotate(${Math.random() * 360}deg)`;
+                document.body.appendChild(spark);
+                setTimeout(() => spark.remove(), 400);
+            }
+        }
+    </script>
+</body>
+</html>
