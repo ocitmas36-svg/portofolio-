@@ -3,136 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mifta.dev | Solusi Web UMKM & Bisnis</title>
+    <title>Mifta.dev | The Digital Architect</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50%25' y='50%25' font-size='60' text-anchor='middle' dominant-baseline='central' fill='%2300f2ff'%3E M %3C/text%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
-        body { font-family: 'Space Grotesk', sans-serif; background-color: #050505; color: white; overflow-x: hidden; cursor: crosshair; }
-        .electric-glow { box-shadow: 0 0 25px rgba(59, 130, 246, 0.4); }
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;800&display=swap');
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #0d0d0d; color: white; overflow-x: hidden; scroll-behavior: smooth; cursor: crosshair; position: relative; }
+        
+        /* Moving Gradient Background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(45deg, #00f2ff, #7000ff, #0a0a0a, #00f2ff, #7000ff);
+            background-size: 400% 400%;
+            animation: gradientMove 30s ease infinite;
+            opacity: 0.15; /* Reduced opacity for subtlety */
+            z-index: -1;
+            filter: blur(150px); /* Heavy blur to make it abstract */
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Gradient Text */
         .gradient-text { 
-            background: linear-gradient(90deg, #3b82f6, #2dd4bf, #3b82f6); 
-            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite;
+            background: linear-gradient(90deg, #00f2ff, #7000ff, #00f2ff); 
+            background-size: 200% auto; 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            animation: shine 3s linear infinite; 
         }
         @keyframes shine { to { background-position: 200% center; } }
-        .spark { position: absolute; width: 2px; height: 15px; background: #3b82f6; z-index: 999; pointer-events: none; animation: spark-anim 0.4s ease-out forwards; }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03); /* Very subtle white for glass effect */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08); /* Finer border */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover {
+            border-color: #00f2ff;
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Spark Effect */
+        .spark { position: absolute; width: 2px; height: 15px; background: #00f2ff; z-index: 999; pointer-events: none; animation: spark-anim 0.4s ease-out forwards; }
         @keyframes spark-anim { 0% { transform: scaleY(0); opacity: 1; } 100% { transform: scaleY(1) translateY(20px); opacity: 0; } }
-        .lang-btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
-        .price-card:hover { transform: translateY(-10px); border-color: #3b82f6; transition: all 0.3s ease; }
+        
         details summary::-webkit-details-marker { display: none; }
-        /* Modal Style */
-        #orderModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; backdrop-filter: blur(10px); }
+        .service-card:hover i { transform: scale(1.2) rotate(10deg); color: #00f2ff; transition: 0.3s; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb { background: #00f2ff; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #7000ff; }
     </style>
 </head>
 <body onclick="createSpark(event)">
 
     <nav class="max-w-5xl mx-auto flex justify-between items-center py-8 px-6">
-        <div class="text-xl font-bold italic tracking-tighter uppercase">MIFTA<span class="text-blue-500">.DEV</span></div>
-        <div id="greetings" class="text-[10px] font-bold uppercase tracking-widest text-blue-500 italic">Halo!</div>
+        <div class="text-2xl font-black italic tracking-tighter text-white">MIFTA<span class="text-[#00f2ff]">.DEV</span></div>
+        <div id="greetings" class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#00f2ff] italic">Loading...</div>
     </nav>
 
-    <header class="max-w-5xl mx-auto py-12 px-6">
-        <div class="flex flex-col md:flex-row items-center gap-10 text-center md:text-left">
-            <div class="relative group p-1 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-[2.6rem]">
-                <img src="IMG-20260123-WA0008.jpg" alt="Miftakhurrosit" class="w-44 h-44 rounded-[2.5rem] object-cover grayscale group-hover:grayscale-0 transition-all duration-500 bg-black shadow-2xl">
+    <header class="max-w-5xl mx-auto py-12 px-6 relative z-10">
+        <div class="flex flex-col md:flex-row items-center gap-10">
+            <div class="relative group p-1 bg-gradient-to-tr from-[#00f2ff] to-[#7000ff] rounded-[2.6rem] shadow-2xl">
+                <img src="./IMG-20260123-WA0008.jpg" alt="Miftakhurrosit" class="w-48 h-48 rounded-[2.5rem] object-cover grayscale group-hover:grayscale-0 transition-all duration-700 bg-black">
+                <div class="absolute -bottom-2 -right-2 bg-[#00f2ff] text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-widest border-4 border-[#0d0d0d]">Pro</div>
             </div>
-            <div class="flex-1">
-                <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-none mb-4 uppercase">CODE WITH <span class="gradient-text">POWER.</span></h1>
-                <p class="text-zinc-500 text-lg max-w-lg leading-relaxed mx-auto md:mx-0">Solusi Web Kilat untuk UMKM. <span class="text-white">Isi Syarat, Langsung Jadi!</span></p>
+            <div class="flex-1 text-center md:text-left">
+                <div class="flex items-center gap-3 mb-6 justify-center md:justify-start">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500">Available for new project</span>
+                </div>
+                <h1 class="text-5xl md:text-8xl font-black tracking-tighter leading-none mb-6 uppercase">DIGITAL <span class="gradient-text">ARCHITECT.</span></h1>
+                <p class="text-zinc-300 text-base md:text-xl max-w-xl leading-relaxed font-light">
+                    Transformasi ide bisnis Anda menjadi <span class="text-white font-bold border-b-2 border-[#00f2ff] pb-1">Identitas Digital Premium</span>. Kami membangun solusi web cepat, hemat biaya, dan siap mendominasi pasar.
+                </p>
             </div>
         </div>
     </header>
 
-    <section id="pricing" class="max-w-5xl mx-auto py-20 px-6 border-t border-zinc-900">
-        <h2 class="text-3xl font-bold tracking-tighter uppercase italic text-blue-500 mb-12 text-center">Pilih Paket Web Anda</h2>
+    <section class="max-w-5xl mx-auto px-6 mb-20 grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 relative z-10">
+        <div class="service-card glass-card p-8 rounded-[2.5rem] flex flex-col items-start">
+            <i class="fas fa-rocket text-[#00f2ff] text-3xl mb-6 block"></i>
+            <h4 class="font-bold uppercase text-sm mb-3 tracking-widest text-white italic">High Performance</h4>
+            <p class="text-[11px] text-zinc-400 leading-relaxed font-medium">Website super ringan & cepat yang meningkatkan kepercayaan pelanggan dan ranking Google secara instan.</p>
+        </div>
+        <div class="service-card glass-card p-8 rounded-[2.5rem] flex flex-col items-start">
+            <i class="fas fa-mobile-alt text-[#7000ff] text-3xl mb-6 block"></i>
+            <h4 class="font-bold uppercase text-sm mb-3 tracking-widest text-white italic">Mobile Optimized</h4>
+            <p class="text-[11px] text-zinc-400 leading-relaxed font-medium">Tampilan sempurna di semua gadget. Responsif bukan sekadar fitur, tapi standar wajib bagi setiap karya saya.</p>
+        </div>
+        <div class="service-card glass-card p-8 rounded-[2.5rem] flex flex-col items-start">
+            <i class="fas fa-shield-alt text-emerald-500 text-3xl mb-6 block"></i>
+            <h4 class="font-bold uppercase text-sm mb-3 tracking-widest text-white italic">Zero Maintenance</h4>
+            <p class="text-[11px] text-zinc-400 leading-relaxed font-medium">Lupakan biaya bulanan. Sistem hosting selamanya gratis dengan proteksi keamanan kelas dunia dari GitHub.</p>
+        </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 mb-24 relative z-10">
+        <div class="flex flex-wrap justify-center gap-2">
+            <span class="px-5 py-2 glass-card rounded-full text-[9px] font-bold uppercase text-zinc-400">Web Development</span>
+            <span class="px-5 py-2 glass-card rounded-full text-[9px] font-bold uppercase text-zinc-400">UI/UX Design</span>
+            <span class="px-5 py-2 glass-card rounded-full text-[9px] font-bold uppercase text-zinc-400">SEO Ready</span>
+            <span class="px-5 py-2 glass-card rounded-full text-[9px] font-bold uppercase text-zinc-400">Copywriting</span>
+            <span class="px-5 py-2 glass-card rounded-full text-[9px] font-bold uppercase text-zinc-400">WA Integration</span>
+        </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto py-20 px-6 border-t border-zinc-900 relative z-10">
+        <h2 class="text-center text-4xl font-black uppercase italic mb-16 tracking-tighter">Investasi <span class="gradient-text italic">Digital.</span></h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div class="price-card p-10 rounded-[3rem] border border-zinc-800 bg-zinc-950 relative">
-                <h4 class="text-blue-500 font-bold uppercase text-[10px] mb-4">Paket Bisnis UMKM</h4>
-                <div class="text-5xl font-bold mb-6 italic">150k</div>
-                <ul class="text-zinc-500 text-xs space-y-4 mb-10">
-                    <li><i class="fas fa-check-circle text-blue-500 mr-2"></i> Landing Page 1 Halaman</li>
-                    <li><i class="fas fa-check-circle text-blue-500 mr-2"></i> Gratis Hosting Selamanya</li>
-                </ul>
-                <button onclick="openOrder('Bisnis UMKM', '150.000')" class="w-full py-4 bg-blue-600 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-all">Pilih Paket Ini</button>
+            <div class="price-card glass-card p-10 rounded-[3.5rem] flex flex-col justify-between">
+                <div>
+                    <h4 class="text-[#00f2ff] font-bold uppercase text-[10px] tracking-[0.4em] mb-4 text-center">UMKM Basic</h4>
+                    <div class="text-6xl font-black mb-10 italic text-center text-white">150<span class="text-xl italic text-[#00f2ff]">k</span></div>
+                    <ul class="text-[10px] text-zinc-400 space-y-4 mb-12 uppercase font-bold tracking-widest">
+                        <li><i class="fas fa-check text-[#00f2ff] mr-2"></i> Landing Page 1 Halaman</li>
+                        <li><i class="fas fa-check text-[#00f2ff] mr-2"></i> Free Hosting Selamanya</li>
+                        <li><i class="fas fa-check text-[#00f2ff] mr-2"></i> Integrasi Chat WA</li>
+                        <li><i class="fas fa-check text-[#00f2ff] mr-2"></i> Mobile Responsive</li>
+                    </ul>
+                </div>
+                <button onclick="openOrder('UMKM Basic', '150k')" class="w-full py-5 bg-[#00f2ff] text-black rounded-2xl font-black text-[11px] uppercase tracking-widest hover:bg-white transition-all shadow-xl">Pilih Paket Ini</button>
             </div>
-            <div class="price-card p-10 rounded-[3rem] border border-zinc-800 bg-zinc-950">
-                <h4 class="text-emerald-500 font-bold uppercase text-[10px] mb-4">Paket Custom Dev</h4>
-                <div class="text-5xl font-bold mb-6 italic">300k+</div>
-                <ul class="text-zinc-500 text-xs space-y-4 mb-10">
-                    <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Desain Khusus & Request</li>
-                    <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Maintenance 1 Bulan</li>
-                </ul>
-                <button onclick="openOrder('Custom Dev', 'Mulai 300.000')" class="w-full py-4 bg-zinc-900 border border-zinc-800 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-emerald-600 transition-all">Pilih Paket Ini</button>
+            <div class="price-card glass-card p-10 rounded-[3.5rem] flex flex-col justify-between">
+                <div>
+                    <h4 class="text-[#7000ff] font-bold uppercase text-[10px] tracking-[0.4em] mb-4 text-center">Custom Dev</h4>
+                    <div class="text-6xl font-black mb-10 italic text-center text-white">300<span class="text-xl italic text-[#7000ff]">k+</span></div>
+                    <ul class="text-[10px] text-zinc-400 space-y-4 mb-12 uppercase font-bold tracking-widest">
+                        <li><i class="fas fa-check text-[#7000ff] mr-2"></i> Desain Sesuai Request</li>
+                        <li><i class="fas fa-check text-[#7000ff] mr-2"></i> Multi-Page Website</li>
+                        <li><i class="fas fa-check text-[#7000ff] mr-2"></i> Full SEO Optimization</li>
+                        <li><i class="fas fa-check text-[#7000ff] mr-2"></i> Support Maintenance</li>
+                    </ul>
+                </div>
+                <button onclick="openOrder('Custom Dev', '300k+')" class="w-full py-5 bg-zinc-800 border border-zinc-700 text-white rounded-2xl font-black text-[11px] uppercase tracking-widest hover:bg-[#7000ff] transition-all shadow-xl">Hubungi Mifta</button>
             </div>
         </div>
     </section>
 
-    <div id="orderModal" class="flex items-center justify-center p-6">
-        <div class="bg-zinc-950 border border-zinc-800 w-full max-w-lg rounded-[2.5rem] p-8 relative">
-            <button onclick="closeOrder()" class="absolute top-6 right-6 text-zinc-500"><i class="fas fa-times"></i></button>
-            <h3 class="text-2xl font-black uppercase italic mb-2">Persiapan <span class="text-blue-500" id="selectedPacketName"></span></h3>
-            <p class="text-zinc-500 text-[10px] uppercase tracking-widest mb-6">Siapkan data berikut sebelum lanjut ke pembayaran WA:</p>
-            
-            <div class="space-y-4 mb-8">
-                <div class="flex items-start gap-3 bg-black p-4 rounded-xl border border-zinc-900">
-                    <i class="fas fa-image text-blue-500 mt-1"></i>
-                    <div>
-                        <h5 class="text-xs font-bold uppercase">Gambar/Foto</h5>
-                        <p class="text-[9px] text-zinc-500 leading-relaxed">Siapkan foto produk, logo bisnis, atau foto tempat usaha (Format JPG/PNG).</p>
-                    </div>
+    <section class="max-w-5xl mx-auto py-24 px-6 relative z-10">
+        <h2 class="text-xl font-black uppercase italic text-[#00f2ff] mb-10 tracking-[0.2em]">F.A.Q</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <details class="group glass-card rounded-[2rem] p-7 cursor-pointer">
+                <summary class="list-none font-bold text-[11px] uppercase flex justify-between items-center tracking-[0.2em] text-white">
+                    Berapa lama website jadi?
+                    <span class="group-open:rotate-180 transition-transform text-[#00f2ff]"><i class="fas fa-chevron-down"></i></span>
+                </summary>
+                <p class="text-[10px] text-zinc-400 mt-5 leading-relaxed italic font-medium">Estimasi kilat 1-3 hari kerja setelah semua data (foto & teks) dikirimkan secara lengkap.</p>
+            </details>
+            <details class="group glass-card rounded-[2rem] p-7 cursor-pointer">
+                <summary class="list-none font-bold text-[11px] uppercase flex justify-between items-center tracking-[0.2em] text-white">
+                    Apakah ada biaya bulanan?
+                    <span class="group-open:rotate-180 transition-transform text-[#00f2ff]"><i class="fas fa-chevron-down"></i></span>
+                </summary>
+                <p class="text-[10px] text-zinc-400 mt-5 leading-relaxed italic font-medium">Tidak ada! Sekali bayar untuk jasa, hosting selamanya gratis menggunakan GitHub Pages.</p>
+            </details>
+        </div>
+    </section>
+
+    <footer class="max-w-5xl mx-auto py-20 px-6 text-center relative z-10">
+        <button onclick="copyWebLink()" class="mb-12 px-10 py-4 glass-card rounded-full text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all">
+            <i class="fas fa-share-alt mr-3"></i> Bagikan Web Ini
+        </button>
+        <p class="text-zinc-700 text-[9px] font-bold uppercase tracking-[1em] mb-2 italic">© 2026 MIFTA.DEV - KEDIRI INDONESIA</p>
+        <div class="flex justify-center gap-6 mt-8">
+            <a href="https://www.instagram.com/ya_rositt" target="_blank" class="text-zinc-600 hover:text-[#00f2ff] transition-all text-xl"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/6282220270373" target="_blank" class="text-zinc-600 hover:text-[#00f2ff] transition-all text-xl"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://github.com/ocitmas36-svg" target="_blank" class="text-zinc-600 hover:text-[#00f2ff] transition-all text-xl"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+
+    <div id="orderModal" class="relative z-[99999]">
+        <div class="glass-card w-full max-w-md rounded-[3.5rem] p-12 relative mx-6 shadow-2xl">
+            <button onclick="closeOrder()" class="absolute top-10 right-10 text-zinc-500 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            <h3 class="text-2xl font-black mb-3 uppercase italic text-[#00f2ff] tracking-tighter">Siapkan Syarat</h3>
+            <p class="text-[10px] text-zinc-500 uppercase tracking-widest mb-10 leading-relaxed font-bold">Harap siapkan data di bawah ini sebelum menghubungi saya:</p>
+            <div class="space-y-4 mb-12 text-[11px] font-bold uppercase tracking-wider text-zinc-300">
+                <div class="flex items-center gap-5 glass-card p-5 rounded-3xl">
+                    <i class="fas fa-image text-[#00f2ff] text-xl"></i> 5-10 Foto Produk / Usaha
                 </div>
-                <div class="flex items-start gap-3 bg-black p-4 rounded-xl border border-zinc-900">
-                    <i class="fas fa-file-alt text-emerald-500 mt-1"></i>
-                    <div>
-                        <h5 class="text-xs font-bold uppercase">Deskripsi & Harga</h5>
-                        <p class="text-[9px] text-zinc-500 leading-relaxed">Catat nama bisnis, daftar harga, dan deskripsi singkat layanan Anda.</p>
-                    </div>
+                <div class="flex items-center gap-5 glass-card p-5 rounded-3xl">
+                    <i class="fas fa-file-invoice text-[#7000ff] text-xl"></i> List Harga & Nama Layanan
                 </div>
-                <div class="flex items-start gap-3 bg-black p-4 rounded-xl border border-zinc-900">
-                    <i class="fas fa-link text-orange-500 mt-1"></i>
-                    <div>
-                        <h5 class="text-xs font-bold uppercase">Link Sosmed</h5>
-                        <p class="text-[9px] text-zinc-500 leading-relaxed">Siapkan link Instagram/TikTok/Maps yang ingin dimasukkan ke web.</p>
-                    </div>
+                <div class="flex items-center gap-5 glass-card p-5 rounded-3xl">
+                    <i class="fas fa-link text-emerald-500 text-xl"></i> Link Instagram / Toko
                 </div>
             </div>
-
-            <button onclick="sendToWA()" class="w-full py-4 bg-white text-black rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all">Saya Sudah Siap Data, Chat WA</button>
+            <button onclick="sendToWA()" class="w-full py-5 bg-[#00f2ff] text-black rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] hover:bg-white transition-all shadow-xl">Data Siap, Pesan Sekarang</button>
         </div>
     </div>
 
-    <footer class="py-12 text-center text-[8px] text-zinc-800 uppercase tracking-[1em]">© 2026 Mifta.dev</footer>
-
     <script>
-        let currentPacket = "";
-        let currentPrice = "";
-
-        function openOrder(name, price) {
-            currentPacket = name;
-            currentPrice = price;
-            document.getElementById('selectedPacketName').innerText = name;
-            document.getElementById('orderModal').style.display = 'flex';
-        }
-
-        function closeOrder() {
-            document.getElementById('orderModal').style.display = 'none';
-        }
-
+        let pName = "";
+        function openOrder(n, p) { pName = n; document.getElementById('orderModal').style.display = 'flex'; }
+        function closeOrder() { document.getElementById('orderModal').style.display = 'none'; }
+        
         function sendToWA() {
-            const phoneNumber = "6282220270373";
-            const message = `Halo Mifta! 👋%0A%0ASaya ingin pesan *${currentPacket}*.%0A%0A✅ Saya sudah siapkan Gambar/Foto produk%0A✅ Saya sudah siapkan Deskripsi & Harga%0A✅ Saya sudah siapkan Link Sosmed%0A%0ABerapa total biaya dan kemana saya harus kirim pembayarannya?%0A%0AMohon info link web-nya juga untuk pengiriman data.`;
-            window.location.href = `https://wa.me/${phoneNumber}?text=${message}`;
+            const msg = `Halo Mifta! 👋%0ASaya ingin memesan paket: *${pName}*.%0A%0AData persyaratan sudah saya siapkan. Mohon info alur pembayaran dan pengiriman datanya!`;
+            window.location.href = `https://wa.me/6282220270373?text=${encodeURIComponent(msg)}`;
         }
+
+        function copyWebLink() {
+            navigator.clipboard.writeText(window.location.href);
+            alert("✅ Link Web Berhasil Disalin! Terima kasih sudah membagikan.");
+        }
+
+        const h = new Date().getHours();
+        const g = document.getElementById('greetings');
+        g.innerText = h<11 ? "Sugeng Enjang!" : h<15 ? "Selamat Siang!" : h<18 ? "Selamat Sore!" : "Sugeng Ndalu!";
 
         function createSpark(e) {
-            for(let i=0; i<6; i++) {
-                const spark = document.createElement('div');
-                spark.className = 'spark';
-                spark.style.left = e.pageX + 'px';
-                spark.style.top = e.pageY + 'px';
-                spark.style.transform = `rotate(${Math.random() * 360}deg)`;
-                document.body.appendChild(spark);
-                setTimeout(() => spark.remove(), 400);
+            for(let i=0; i<5; i++) {
+                const s = document.createElement('div');
+                s.className = 'spark';
+                s.style.left = e.pageX + 'px'; s.style.top = e.pageY + 'px';
+                s.style.transform = `rotate(${Math.random()*360}deg)`;
+                document.body.appendChild(s);
+                setTimeout(() => s.remove(), 400);
             }
         }
     </script>
